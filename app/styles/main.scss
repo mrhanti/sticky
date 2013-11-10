@@ -1,0 +1,27 @@
+@import "sass-bootstrap/lib/bootstrap";
+
+.row .col-md-6:first-child {
+    // background: #eee;
+}
+
+.row .col-md-6:last-child {
+    background: #aaa;
+}
+
+// plugin styles
+
+.sticky {
+    width: 555px;
+}
+
+.affix-bottom {
+    position: fixed;
+}
+
+// example style
+
+// .text {
+//     // height: 400px;
+//     // overflow: hidden;
+//     -webkit-transition: height .5s ease-out;
+// }
