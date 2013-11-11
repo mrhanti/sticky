@@ -1,4 +1,6 @@
-(function($, exports) {
+;(function($, exports) {
+    var Miamed = exports.Miamed || {};
+
 
     function Sticky(element, options) {
         this.options  = $.extend({}, Sticky.DEFAULTS, options);
@@ -6,29 +8,9 @@
 
         this.$element = $(element);
 
-        this.pinned = false;
-
         this.$window.on('scroll', $.proxy(this.check, this));
 
-
-        // To delete later on
-        $('.show-more').click(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            $('.text').css({'height': '800px', 'overflow': ''});
-            return;
-        });
-
-        $('.show-less').click(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            $('.text').css({'height': '400px', 'overflow': 'hidden'});
-            return;
-        });
-
-        // this.check();
+        this.check();
     }
 
     Sticky.DEFAULTS = {
@@ -37,44 +19,36 @@
     };
 
     Sticky.prototype.check = function() {
-        var
-        options      = this.options,
-        offset       = this.$element.offset(),
-
-        scrollHeight = offset.top + this.$element.height(),
-        scrollTop    = this.$window.scrollTop(),
-        screenHeight = this.$window.height();
-
-        console.log(this.$element.height());
-        if(scrollHeight <= screenHeight && !this.$element.hasClass(options.topClassName)) {
-            this.$element.addClass(options.topClassName);
+        if (!this.$element.is(':visible')) {
             return;
         }
 
-        if(!this.pinned) {
-            this.$element.removeClass(options.topClassName);
-            this.$element.css({ 'top': '' });
-        }
+        var
+
+        sticky,
+
+        options      = this.options,
+
+        scrollHeight = this.$element[0].scrollHeight,
+
+        scrollTop    = this.$window.scrollTop(),
+
+        screenHeight = this.$window.height();
 
 
-        if((scrollHeight - screenHeight) + 10 <= scrollTop) {
-            if(!this.pinned) {
-                this.$element.addClass(options.bottomClassName);
+        if(scrollTop <= 0) return;
 
-                this.pinned = true;
-            }
-        } else {
-            if(this.pinned) {
-                this.$element.removeClass(options.bottomClassName);
 
-                this.pinned = false;
-            }
-        }
+        console.log(scrollHeight - screenHeight + 10, scrollTop);
+        var affix = (scrollHeight <= screenHeight) ? options.topClassName :
+                    ((scrollHeight - screenHeight) + 10 <= scrollTop) ? options.bottomClassName : '';
+
+        this.$element.removeClass([options.bottomClassName, options.topClassName].join(' '))
+            .addClass(affix);
     }
-
-    var Miamed = exports.Miamed || {};
 
     Miamed.Sticky = Sticky;
 
     exports.Miamed = Miamed;
+
 })(window.jQuery, window);
