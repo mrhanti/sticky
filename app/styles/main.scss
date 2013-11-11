@@ -12,16 +12,28 @@
 
 .sticky {
     width: 555px;
+    padding: 0;
+    margin: 0;
+
+    p {
+        margin: 0;
+    }
 }
 
-.affix-bottom {
+.bottom-fixed {
     position: fixed;
+    bottom: 10px;
+}
+
+.top-fixed {
+    position: fixed;
+    top: 0;
 }
 
 // example style
 
-// .text {
-//     // height: 400px;
-//     // overflow: hidden;
-//     -webkit-transition: height .5s ease-out;
-// }
+.text {
+    height: 400px;
+    overflow: hidden;
+    -webkit-transition: height .5s ease-out;
+}

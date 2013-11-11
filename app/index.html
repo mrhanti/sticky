@@ -26,9 +26,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <div class="sticky">
-                    <p>
-                        <div class="text">
+                <div class="sticky clearfix">
+                    <div class="text clearfix">
+                        <p>
                             <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, architecto, culpa est cupiditate harum officiis quasi sit debitis rem incidunt facere beatae omnis fugiat laborum dicta officia nesciunt numquam? Facilis.</span>
                             <span>Magnam, excepturi, corrupti numquam pariatur natus quod aspernatur nesciunt eveniet ea eaque? Enim, tempora, voluptas, nulla possimus hic sunt quis temporibus consequuntur necessitatibus unde quas minus similique cumque. Ratione, impedit.</span>
                             <span>Velit, in, eum, obcaecati, dolor est provident adipisci eaque possimus sed culpa molestias tenetur aspernatur laborum saepe optio vero perspiciatis doloremque facilis deserunt laboriosam libero cupiditate accusamus laudantium cum asperiores!</span>
@@ -46,9 +46,12 @@
                             <span>Minima, odit cumque deserunt quia voluptate commodi magnam laboriosam consectetur dicta eaque saepe in sunt incidunt nam dolor sequi rem accusamus harum maiores laborum. Porro ullam veritatis sed accusantium id.</span>
                             <span>Quod, dicta, magnam, consequuntur quia harum dignissimos doloribus excepturi aliquam perspiciatis culpa dolorem reprehenderit asperiores fugit veniam id nemo beatae quam est illo dolore totam magni modi explicabo ratione voluptatum.</span>
                             <span>Ea, aliquam, at corrupti numquam natus doloremque dolorum reprehenderit labore possimus officiis molestias magni reiciendis eius blanditiis quasi excepturi facilis quidem quos saepe recusandae modi porro incidunt cumque laboriosam minima!</span>
-                        </div>
-                        <a href="#" class="show-more" style="float:right;">Show more</a>
-                    </p>
+                        </p>
+                    </div>
+                    <div class="clearfix">
+                        <a href="#" class="show-more" style="float:right;">Show more</a><br>
+                        <a href="#" class="show-less" style="float:right;">Show less</a>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -122,7 +125,13 @@
 
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
-    <script src="scripts/affix.js"></script>
+    <script src="scripts/main.js"></script>
+    <script>
+        // console.log(Miamed);
+        (function() {
+            new Miamed.Sticky(document.querySelector('.sticky'));
+        })();
+    </script>
     <!-- endbuild -->
 </body>
 

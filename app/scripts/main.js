@@ -1,72 +1,81 @@
-$(function() {
+(function($, exports) {
 
-    var $el = $('.sticky');
-    var $window = $(window);
+    function Sticky(element, options) {
+        this.options  = $.extend({}, Sticky.DEFAULTS, options);
+        this.$window  = $(window);
 
-    var screenHeight = $window.height();
-    var scrollHeight;
-    scrollHeight = $el[0].scrollHeight;
+        this.$window.on('scroll', $.proxy(this.check, this));
 
-    var scrollTop;
+        this.$element = $(element);
 
-    var elementHeight = $el.height();
-    var offset = $el.offset();
+        this.pinned = false;
 
-    var pinned = false;
+        // To delete later on
+        $('.show-more').click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
 
-    var bottom;
+            $('.text').css({'height': '800px', 'overflow': ''});
+            return;
+        });
 
-    var defaultCssPosition = $el.css('position') || 'static';
+        $('.show-less').click(function(e) {
+            e.preventDefault();
+            e.stopPropagation();
 
-    $window.on('scroll', function() {
-        scrollTop = $(this).scrollTop();
+            $('.text').css({'height': '400px', 'overflow': 'hidden'});
+            return;
+        });
 
-        // if(scrollHeight <= screenHeight) {
-        //     $el.addClass('affix-bottom');
-        //     $el.css({
-        //         'top': '0'
-        //     });
-        //     console.log('content not longer than screen');
+        this.check();
+    }
 
-        //     return;
-        // }
+    Sticky.DEFAULTS = {
+        bottomClassName: 'bottom-fixed',
+        topClassName:    'top-fixed'
+    };
 
-        // if(!pinned) {
-        //     $el.removeClass('affix-bottom');
-        //     $el.offset({ 'top': '' });
-        // }
+    Sticky.prototype.check = function() {
+        var
+        options      = this.options,
+        offset       = this.$element.offset(),
 
-        if((scrollHeight - screenHeight) + 30 <= scrollTop) {
-            if(!pinned) {
-                bottom = scrollTop - (scrollHeight - screenHeight);
+        scrollHeight = offset.top + this.$element.height(),
+        scrollTop    = this.$window.scrollTop(),
+        screenHeight = this.$window.height();
 
-                $el.addClass('affix-bottom');
-
-                $el.css({
-                    'bottom': '0'
-                });
-
-                pinned = true;
-            }
-        } else {
-            if(pinned) {
-                $el.removeClass('affix-bottom');
-
-                $el.css({
-                    'bottom': ''
-                });
-
-                pinned = false;
-            }
+        console.log(this.$element.height());
+        console.log(scrollHeight, screenHeight);
+        if(scrollHeight <= screenHeight && !this.$element.hasClass(options.topClassName)) {
+            this.$element.addClass(options.topClassName);
+            return;
         }
 
-    });
+        return;
+        if(!this.pinned) {
+            this.$element.removeClass(options.topClassName);
+            this.$element.css({ 'top': '' });
+        }
 
-    // $('.show-more').click(function(e) {
-    //     e.preventDefault();
-    //     e.stopPropagation();
 
-    //     $('.text').css('height', '800px');
-    //     return;
-    // });
-});
+        if((scrollHeight - screenHeight) + 10 <= scrollTop) {
+            if(!this.pinned) {
+                this.$element.addClass(options.bottomClassName);
+
+                this.pinned = true;
+            }
+        } else {
+            if(this.pinned) {
+                this.$element.removeClass(options.bottomClassName);
+
+                this.pinned = false;
+            }
+        }
+    }
+
+    var Miamed = exports.Miamed || {};
+
+    Miamed.Sticky = Sticky;
+
+    exports.Miamed = Miamed;
+})(window.jQuery, window);
