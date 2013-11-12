@@ -1,6 +1,4 @@
 ;(function($, exports) {
-    var Miamed = exports.Miamed || {};
-
 
     function Sticky(element, options) {
         this.options  = $.extend({}, Sticky.DEFAULTS, options);
@@ -13,10 +11,9 @@
         this.check();
     }
 
-    Sticky.DEFAULTS = {
-        bottomClassName: 'bottom-fixed',
-        topClassName:    'top-fixed'
-    };
+    Sticky.DEFAULTS = {};
+
+    Sticky.RESET = 'bottom-fixed top-fixed';
 
     Sticky.prototype.check = function() {
         if (!this.$element.is(':visible')) {
@@ -38,17 +35,28 @@
 
         if(scrollTop <= 0) return;
 
+        var affix = (scrollHeight <= screenHeight) ? 'top' :
+                    ((scrollHeight - screenHeight) + 10 <= scrollTop) ? 'bottom' : '';
 
-        console.log(scrollHeight - screenHeight + 10, scrollTop);
-        var affix = (scrollHeight <= screenHeight) ? options.topClassName :
-                    ((scrollHeight - screenHeight) + 10 <= scrollTop) ? options.bottomClassName : '';
-
-        this.$element.removeClass([options.bottomClassName, options.topClassName].join(' '))
-            .addClass(affix);
+        this.$element.removeClass(Sticky.RESET).addClass(affix + (!!affix ? '-fixed' : ''));
     }
 
-    Miamed.Sticky = Sticky;
+    // jQuery plugin
+    // =============
 
-    exports.Miamed = Miamed;
+    var old = $.fn.sticky
+
+    $.fn.sticky = function (options) {
+        return this.each(function () {
+            new Sticky(this, options);
+        });
+    }
+
+    $.fn.sticky.Constructor = Sticky;
+
+    $.fn.sticky.noConflict = function () {
+        $.fn.sticky = old;
+        return this;
+    }
 
 })(window.jQuery, window);
