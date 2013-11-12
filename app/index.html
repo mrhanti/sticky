@@ -16,6 +16,18 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+
+    <style>
+        .bottom-fixed {
+            position: fixed;
+            bottom: 10px;
+        }
+
+        .top-fixed {
+            position: fixed;
+            top: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -123,14 +135,14 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js scripts/main.js -->
+    <!-- build:js scripts/sticky.js -->
     <script src="scripts/sticky.js"></script>
     <!-- endbuild -->
 
     <script>
         (function() {
             var element = document.querySelector('.sticky');
-            new Miamed.Sticky(element);
+            $(element).sticky();
         })();
 
         // To delete later on
