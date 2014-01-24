@@ -56,6 +56,21 @@
                             <span>Minima, odit cumque deserunt quia voluptate commodi magnam laboriosam consectetur dicta eaque saepe in sunt incidunt nam dolor sequi rem accusamus harum maiores laborum. Porro ullam veritatis sed accusantium id.</span>
                             <span>Quod, dicta, magnam, consequuntur quia harum dignissimos doloribus excepturi aliquam perspiciatis culpa dolorem reprehenderit asperiores fugit veniam id nemo beatae quam est illo dolore totam magni modi explicabo ratione voluptatum.</span>
                             <span>Ea, aliquam, at corrupti numquam natus doloremque dolorum reprehenderit labore possimus officiis molestias magni reiciendis eius blanditiis quasi excepturi facilis quidem quos saepe recusandae modi porro incidunt cumque laboriosam minima!</span>
+                            <span>Minima, odit cumque deserunt quia voluptate commodi magnam laboriosam consectetur dicta eaque saepe in sunt incidunt nam dolor sequi rem accusamus harum maiores laborum. Porro ullam veritatis sed accusantium id.</span>
+                            <span>Quod, dicta, magnam, consequuntur quia harum dignissimos doloribus excepturi aliquam perspiciatis culpa dolorem reprehenderit asperiores fugit veniam id nemo beatae quam est illo dolore totam magni modi explicabo ratione voluptatum.</span>
+                            <span>Ea, aliquam, at corrupti numquam natus doloremque dolorum reprehenderit labore possimus officiis molestias magni reiciendis eius blanditiis quasi excepturi facilis quidem quos saepe recusandae modi porro incidunt cumque laboriosam minima!</span>
+                            <span>Minima, odit cumque deserunt quia voluptate commodi magnam laboriosam consectetur dicta eaque saepe in sunt incidunt nam dolor sequi rem accusamus harum maiores laborum. Porro ullam veritatis sed accusantium id.</span>
+                            <span>Quod, dicta, magnam, consequuntur quia harum dignissimos doloribus excepturi aliquam perspiciatis culpa dolorem reprehenderit asperiores fugit veniam id nemo beatae quam est illo dolore totam magni modi explicabo ratione voluptatum.</span>
+                            <span>Ea, aliquam, at corrupti numquam natus doloremque dolorum reprehenderit labore possimus officiis molestias magni reiciendis eius blanditiis quasi excepturi facilis quidem quos saepe recusandae modi porro incidunt cumque laboriosam minima!</span>
+                            <span>Minima, odit cumque deserunt quia voluptate commodi magnam laboriosam consectetur dicta eaque saepe in sunt incidunt nam dolor sequi rem accusamus harum maiores laborum. Porro ullam veritatis sed accusantium id.</span>
+                            <span>Quod, dicta, magnam, consequuntur quia harum dignissimos doloribus excepturi aliquam perspiciatis culpa dolorem reprehenderit asperiores fugit veniam id nemo beatae quam est illo dolore totam magni modi explicabo ratione voluptatum.</span>
+                            <span>Ea, aliquam, at corrupti numquam natus doloremque dolorum reprehenderit labore possimus officiis molestias magni reiciendis eius blanditiis quasi excepturi facilis quidem quos saepe recusandae modi porro incidunt cumque laboriosam minima!</span>
+                            <span>Minima, odit cumque deserunt quia voluptate commodi magnam laboriosam consectetur dicta eaque saepe in sunt incidunt nam dolor sequi rem accusamus harum maiores laborum. Porro ullam veritatis sed accusantium id.</span>
+                            <span>Quod, dicta, magnam, consequuntur quia harum dignissimos doloribus excepturi aliquam perspiciatis culpa dolorem reprehenderit asperiores fugit veniam id nemo beatae quam est illo dolore totam magni modi explicabo ratione voluptatum.</span>
+                            <span>Ea, aliquam, at corrupti numquam natus doloremque dolorum reprehenderit labore possimus officiis molestias magni reiciendis eius blanditiis quasi excepturi facilis quidem quos saepe recusandae modi porro incidunt cumque laboriosam minima!</span>
+                            <span>Minima, odit cumque deserunt quia voluptate commodi magnam laboriosam consectetur dicta eaque saepe in sunt incidunt nam dolor sequi rem accusamus harum maiores laborum. Porro ullam veritatis sed accusantium id.</span>
+                            <span>Quod, dicta, magnam, consequuntur quia harum dignissimos doloribus excepturi aliquam perspiciatis culpa dolorem reprehenderit asperiores fugit veniam id nemo beatae quam est illo dolore totam magni modi explicabo ratione voluptatum.</span>
+                            <span>Ea, aliquam, at corrupti numquam natus doloremque dolorum reprehenderit labore possimus officiis molestias magni reiciendis eius blanditiis quasi excepturi facilis quidem quos saepe recusandae modi porro incidunt cumque laboriosam minima!</span>
                         </p>
                     </div>
                     <div class="clearfix">
@@ -128,29 +143,29 @@
     </div>
 
     <script src="vendor/jquery.min.js"></script>
-    <script src="../dist/sticky.js"></script>
-
+    <script src="../src/scroll_events.js"></script>
+    <script src="../src/sticky.js"></script>
     <script>
         (function() {
             var element = document.querySelector('.sticky');
             $(element).sticky();
+
+            $('.show-more').click(function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                $('.text').css({'height': '1000px', 'overflow': ''});
+                return;
+            });
+
+            $('.show-less').click(function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                $('.text').css({'height': '400px', 'overflow': 'hidden'});
+                return;
+            });
         })();
-
-        $('.show-more').click(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            $('.text').css({'height': '800px', 'overflow': ''});
-            return;
-        });
-
-        $('.show-less').click(function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            $('.text').css({'height': '400px', 'overflow': 'hidden'});
-            return;
-        });
     </script>
 </body>
 
