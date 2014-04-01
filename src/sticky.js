@@ -8,6 +8,8 @@
 
         this.$window.on('scroll', $.proxy(this.check, this));
 
+        this.$$scrollTop;
+
         this.check();
     }
 
@@ -32,12 +34,36 @@
 
         screenHeight = this.$window.height();
 
+        this.$$scrollTop = this.$$scrollTop || (scrollTop < 0 ? 0 : scrollTop);
 
         if(scrollTop <= 0) return;
 
-        var affix = (scrollHeight <= screenHeight) ? 'top' :
-                    ((scrollHeight - screenHeight) + 10 <= scrollTop) ? 'bottom' : '';
+        var affix;
 
+        if(scrollHeight <= screenHeight) {
+          affix = 'top';
+        } else {
+          var scroll = (scrollHeight - screenHeight) + 10;
+
+          if(scroll <= scrollTop) {
+            affix = 'bottom';
+            // this.$element.removeClass('absolute');
+          } else {
+            if(scrollTop >= 1) {
+              var offset = this.$element.offset();
+
+              this.$element.css({
+                'top': offset.top
+              });
+
+              this.$element.addClass('absolute');
+            }
+
+            affix = ''
+          }
+        }
+
+        console.log('affix:', affix);
         this.$element.removeClass(Sticky.RESET).addClass(affix + (!!affix ? '-fixed' : ''));
     }
 
