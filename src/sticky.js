@@ -1,6 +1,8 @@
 ;(function($, exports) {
 
     function Sticky(element, options) {
+
+
         this.options  = $.extend({}, Sticky.DEFAULTS, options);
         this.$window  = $(window);
 
